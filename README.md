@@ -3,10 +3,11 @@
 ## Installation Steps
 
 1. Download all the files.
-2. Place them inside a folder called **group**.
-3. Move the **group** folder to your web root directory.
+2. Ensure to download vendor as well as it is needed for the password reset
+3. Place them inside a folder called **group**.
+4. Move the **group** folder to your web root directory.
    - **For XAMPP**: Place it inside `htdocs/group/`.
-4. Open a browser and go to [http://localhost/group/login.php](http://localhost/group/login.php) to log in as **Admin, Researcher, or Research Assistant**.
+5. Open a browser and go to [http://localhost/group/login.php](http://localhost/group/login.php) to log in as **Admin, Researcher, or Research Assistant**.
 
 ---
 
