@@ -1,0 +1,623 @@
+body {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 30px; /* Add space at the bottom */
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    color: #333;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-top: 70px; /* Matches .top-bar height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Top Bar for Logout Button */
+.top-bar {
+    width: 100%;
+    height: 60px; /* Ensure height matches body padding */
+    background: #2C3E50; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.bottom-bar {
+    position: fixed; /* Sticks to the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2C3E50; /* Dark color */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Logo Styling */
+.logo {
+    width: 36px; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevent distortion */
+    margin-left: 30px; /* Add some spacing between logo and title */
+}
+
+/* Main Title Styling */
+.main-title {
+    color: #FFFFFF; /* White */
+    font-size: 30px; /* Adjust font size */
+    font-weight: bold;
+    margin-left: 0px; /* Adds spacing between the logo and title */
+    text-align: left; /* Aligns text to the left */
+}
+
+/* Home Button Styling */
+.home-btn {
+    background: #007bff; /* Blue */
+    color: #FFFFFF; /* White text */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-left: auto; /* Ensures the button stays on the far right */
+    margin-right: 30px; /* Space from the right edge */
+}
+
+/* Hover Effect for Home Button */
+.home-btn:hover {
+    background: #0056b3; 
+}
+
+/* Logo and Title Container */
+.logo-title-container {
+    display: flex; 
+    align-items: center; /* Vertically centers the logo and title */
+    gap: 10px; /* Adds spacing between the logo and the title */
+}
+
+/* Main Content */
+.dashboard-content {
+    padding: 30px;
+    text-align: center;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Dashboard Grid: Force exactly three columns */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns */
+    gap: 20px; /* Spacing between items */
+    justify-content: center; /* Center the grid within the page */
+    padding: 20px;
+    margin: 0 auto; /* Center the grid on the page */
+    max-width: 1200px; 
+}
+
+/* Dashboard Card: Clean layout */
+.dashboard-card {
+    text-align: center;
+    text-decoration: none;
+    color: #2C3E50; 
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, color 0.3s;
+    padding: 15px;
+    border-radius: 8px;
+    background: none; 
+}
+
+.dashboard-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card span {
+    font-size: 16px;
+}
+
+/* Hover Effects */
+.dashboard-card:hover {
+    transform: scale(1.05); 
+    color: #007bff; /* Blue highlight on hover */
+}
+
+/* Containers */
+.create-container, .read-container {
+    width: 80%; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+    background: white; 
+    box-sizing: border-box; 
+}
+
+.create-container {
+    margin-top: 0; 
+    margin-bottom: 40px; /* Keep spacing below the container */
+}
+
+/* Read Container Styling */
+.read-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reports CRUD Section */
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.report-card {
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.report-card h3 {
+    margin-bottom: 15px;
+    color: #2C3E50;
+}
+
+.report-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.report-card .report-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.report-card a.link-button {
+    text-decoration: none;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.report-card a.link-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.report-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Create Section */
+.create-container input, 
+.create-container select {
+    width: calc(100% - 10px);
+    max-width: 2000px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure consistency */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-container label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 10px; /* Push the label down slightly */
+}
+
+.create-container input[type="text"]:focus,
+.create-container select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4); /* Subtle glow */
+    background-color: #fff; /* Pure white background on focus */
+}
+
+/* Buttons inside Forms */
+.create-container button {
+    background-color: #2C3E50; /* Same as table headers for consistency */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    max-width: 150px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.create-container button:hover {
+    background-color: #1A2733; /* Slightly darker navy */
+    transform: scale(1.05); /* Subtle zoom */
+}
+
+/* Tables */
+.equipment-table {
+    width: 100%;
+    border-collapse: collapse; /* No spacing between table cells */
+    margin-top: 15px;
+    border: 2px solid #ccc; /* Make the border thicker and distinct */
+    border-radius: 12px; /* Round the table edges */
+    overflow: hidden; /* Ensure rounded corners are visible */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
+
+body.equipment-management {
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    height: auto; /* Ensure height is dynamic based on content */
+    min-height: 100vh; /* Ensure minimum height fills the viewport */
+}
+
+/* Headers */
+.equipment-table th {
+    background-color: #2C3E50; /* Navy Blue */
+    color: white; /* White text for contrast */
+    padding: 15px; /* Increase padding for taller rows */
+    text-align: center;
+    font-size: 18px; /* Increased font size for headers */
+    font-weight: bold;
+    border: none; /* Remove internal borders from headers */
+}
+
+/* Body Rows */
+.equipment-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light grey for even rows */
+}
+
+.equipment-table tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+.equipment-table td {
+    border: 1px solid #ddd; /* Add a subtle border for cells */
+    padding: 15px 10px; /* Increase vertical padding for taller rows */
+    text-align: center;
+    font-size: 16px; /* Increased font size for table cells */
+}
+
+/* Rounded Corners for Specific Parts */
+.equipment-table tr:first-child th:first-child {
+    border-top-left-radius: 12px; /* Round top-left corner */
+}
+
+.equipment-table tr:first-child th:last-child {
+    border-top-right-radius: 12px; /* Round top-right corner */
+}
+
+.equipment-table tr:last-child td:first-child {
+    border-bottom-left-radius: 12px; /* Round bottom-left corner */
+}
+
+.equipment-table tr:last-child td:last-child {
+    border-bottom-right-radius: 12px; /* Round bottom-right corner */
+}
+
+.equipment-table a {
+    text-decoration: none;
+    color: #007bff; /* Blue */
+    font-weight: bold;
+}
+
+.equipment-table a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.table-container {
+    overflow: auto; /* Keeps scrolling */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+.table-container::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome, Safari, Edge */
+}
+
+/* Messages */
+.message {
+    max-width: 100%; /* Ensures it does not exceed the container */
+    margin: 10px auto; /* Center it within the container */
+    padding: 8px 10px; /* Compact padding for a smaller appearance */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 12px; /* Make the text smaller */
+    text-align: center; /* Center-align the text */
+    box-sizing: border-box; /* Includes padding in width calculations */
+}
+
+.message.success {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb; /* Green border */
+}
+
+.message.error {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Red border */
+}
+
+/* logout */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Full height minus the top bar */
+    text-align: center;
+    margin: 0 auto;
+}
+
+.message-container h1 {
+    font-size: 24px; /* Keep it clean and simple */
+    color: #2C3E50; /* Navy Blue for consistency */
+    margin-bottom: 15px;
+}
+
+.message-container p {
+    font-size: 16px;
+    color: #555; /* Neutral gray for text */
+    margin-bottom: 20px;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #007bff;
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Login Page Specific Styles */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Subtract top bar height */
+    overflow: hidden; /* Prevent any scrollbars */
+    padding: 0;
+}
+
+.login-page .message {
+    display: inline-block;
+    max-width: 100%; 
+    width: auto; 
+    word-wrap: break-word; 
+    text-align: center; 
+    padding: 10px 15px; 
+    margin: 10px auto; 
+    border-radius: 5px; 
+    font-size: 14px;
+    overflow: hidden; 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb; 
+    box-sizing: border-box; 
+}
+
+.login-page .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: -40px auto 0; 
+}
+
+.form-container h1 {
+    font-size: 24px; 
+    color: #2C3E50; 
+    margin-bottom: 20px; 
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="number"],
+.form-container select {
+    width: 100%; /* Full-width fields */
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light grey background */
+    font-size: 14px; /* Input font size */
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="number"]:focus,
+.form-container select:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4); 
+    background-color: #fff; 
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #2C3E50; /* Navy blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.form-container button:hover {
+    background-color: #1A2733; 
+    transform: scale(1.05); 
+}
+
+.form-container .link {
+    display: block; 
+    margin-top: 15px; 
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease; 
+}
+
+.form-container .link:hover {
+    color: #0056b3; 
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #007bff; 
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.link-button:hover {
+    color: #0056b3; 
+}
+
+/* Account Dropdown Styles */
+.account-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.account-btn {
+    background: #2c3e50;
+    color: white;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.account-btn:hover {
+    background: #34495e;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    min-width: 130px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-content a:hover {
+    background: #f8f9fa;
+}
+
+.account-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
