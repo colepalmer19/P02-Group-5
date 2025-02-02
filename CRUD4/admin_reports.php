@@ -36,12 +36,12 @@ if ($user_result->num_rows > 0) {
 // Handling form submission to create a report
 $success_message = $error_message = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_report'])) {
-    // ✅ Validate CSRF Token
+    // Validate CSRF Token
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         die('Invalid CSRF token.');
     }
 
-    // ✅ Regenerate CSRF token after successful operation
+    // Regenerate CSRF token after successful operation
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
     // Retrieve and sanitize user inputs
@@ -76,13 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['create_report'])) {
             $stmt->bind_param("iisidsi", $project, $assigned_to, $description, $equipment_percentage_used, $funding, $progress, $created_by);
 
             if ($stmt->execute()) {
-                // ✅ Regenerate CSRF token after successful operation
+                // Regenerate CSRF token after successful operation
                 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             
-                // ✅ Store success message in session
+                // Store success message in session
                 $_SESSION['success_message'] = "Report created successfully!";
             
-                // ✅ Redirect to prevent form resubmission
+                // Redirect to prevent form resubmission
                 header("Location: admin_reports.php");
                 exit();
             } else {
