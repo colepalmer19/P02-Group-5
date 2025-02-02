@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_equipment'])) {
         exit();
     }
 
-    // ✅ Regenerate CSRF token after validation
+    // Regenerate CSRF token after validation
     unset($_SESSION['csrf_token']);
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_equipment'])) {
         $availability = 0;
     }
 
-    // ✅ Input Validation (including special character check)
-    // ✅ Input Validation (including special character check)
+    // Input Validation (including special character check)
+    // Input Validation (including special character check)
     if (!preg_match('/^[a-zA-Z0-9 ]+$/', $equipment_name)) {
         $_SESSION['error_message'] = "Error: Equipment name must not contain special characters!";
         header("Location: research_assistant_equipment.php");
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_equipment'])) {
         exit();
     }
 
-    // ✅ Proceed only if no validation errors
+    // Proceed only if no validation errors
     if (empty($error_message)) {
         // Insert new equipment
         $stmt = $conn->prepare(
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id']) && isset($
         exit();
     }
 
-    // ✅ Regenerate CSRF token after validation
+    // Regenerate CSRF token after validation
     unset($_SESSION['csrf_token']);
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
@@ -154,11 +154,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id']) && isset($
             <?php 
             if (isset($_SESSION['error_message'])) {
                 echo "<div class='message error'>" . $_SESSION['error_message'] . "</div>";
-                unset($_SESSION['error_message']); // ✅ Remove after displaying
+                unset($_SESSION['error_message']); // Remove after displaying
             }
             if (isset($_SESSION['success_message'])) {
                 echo "<div class='message success'>" . $_SESSION['success_message'] . "</div>";
-                unset($_SESSION['success_message']); // ✅ Remove after displaying
+                unset($_SESSION['success_message']); // Remove after displaying
             }
             ?>
 
