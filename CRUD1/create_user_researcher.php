@@ -8,7 +8,7 @@ if (!isset($_SESSION['session_userid']) || $_SESSION['session_role'] !== 'Resear
     exit();
 }
 
-// ✅ Generate CSRF token if not set
+// Generate CSRF token if not set
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -25,18 +25,18 @@ if ($result) {
 
 // Handle form submission for creating a user
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ✅ Validate CSRF token
+    // Validate CSRF token
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $_SESSION['error_message'] = "Invalid CSRF token!";
         header("Location: create_user_researcher.php");
         exit();
     }
 
-    // ✅ Regenerate CSRF token after validation
+    // Regenerate CSRF token after validation
     unset($_SESSION['csrf_token']);
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
-    // ✅ Sanitize and validate inputs
+    // Sanitize and validate inputs
     $name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
     $contact_information = htmlspecialchars(trim($_POST['contact_information']), ENT_QUOTES, 'UTF-8');
     $area_of_expertise = htmlspecialchars(trim($_POST['area_of_expertise']), ENT_QUOTES, 'UTF-8');
@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $assigned_projects = isset($_POST['assigned_projects']) ? $_POST['assigned_projects'] : [];
     $password = $_POST['password'];
 
-    // ✅ Ensure Admins cannot be created
+    // Ensure Admins cannot be created
     if ($role === "Admin") {
         $_SESSION['error_message'] = "You cannot create an Admin user.";
         header("Location: create_user_researcher.php");
         exit();
     }
 
-    // ✅ Check if the email already exists
+    // Check if the email already exists
     $email_check_stmt = $conn->prepare("SELECT id FROM user WHERE email = ?");
     $email_check_stmt->bind_param('s', $email);
     $email_check_stmt->execute();
@@ -68,17 +68,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email_check_stmt->close();
 
-    // ✅ Securely Hash the Password
+    // Securely Hash the Password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // ✅ Insert the new user into the `user` table
+    // Insert the new user into the `user` table
     $stmt = $conn->prepare("INSERT INTO user (name, contact_information, area_of_expertise, age, email, role, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param('sssisss', $name, $contact_information, $area_of_expertise, $age, $email, $role, $hashed_password);
 
     if ($stmt->execute()) {
         $new_user_id = $stmt->insert_id; // Get the newly created user ID
 
-        // ✅ Assign projects if any were selected
+        // Assign projects if any were selected
         if (!empty($assigned_projects)) {
             $assign_stmt = $conn->prepare("INSERT INTO project_team (project_id, user_id) VALUES (?, ?)");
             foreach ($assigned_projects as $project_id) {
