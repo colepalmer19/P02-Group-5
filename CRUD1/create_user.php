@@ -8,7 +8,7 @@ if (!isset($_SESSION['session_userid']) || $_SESSION['session_role'] !== 'Admin'
     exit();
 }
 
-// ✅ Generate CSRF token if not set
+//  Generate CSRF token if not set
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -25,14 +25,14 @@ if ($result) {
 
 // Handle form submission for creating a user
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ✅ CSRF token validation
+    //  CSRF token validation
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $_SESSION['error_message'] = "Invalid CSRF token.";
         header("Location: create_user.php");
         exit();
     }
 
-    // ✅ Regenerate CSRF token after validation
+    //  Regenerate CSRF token after validation
     unset($_SESSION['csrf_token']);
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $assigned_projects = isset($_POST['assigned_projects']) ? $_POST['assigned_projects'] : [];
     $password = $_POST['password'];
 
-    // ❌ Prevent Admins from being assigned projects
+    //  Prevent Admins from being assigned projects
     if ($role === "Admin" && !empty($assigned_projects)) {
         $_SESSION['error_message'] = "Admins cannot be assigned to research projects.";
         header("Location: create_user.php");
         exit();
     }
 
-    // ✅ Step 1: Check if the email already exists
+    // Step 1: Check if the email already exists
     $email_check_stmt = $conn->prepare("SELECT id FROM user WHERE email = ?");
     $email_check_stmt->bind_param('s', $email);
     $email_check_stmt->execute();
@@ -68,17 +68,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email_check_stmt->close();
 
-    // ✅ Step 2: Hash the password securely before storing
+    // Step 2: Hash the password securely before storing
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // ✅ Step 3: Insert the new user into the `user` table
+    // Step 3: Insert the new user into the `user` table
     $stmt = $conn->prepare("INSERT INTO user (name, contact_information, area_of_expertise, age, email, role, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param('sssisss', $name, $contact_information, $area_of_expertise, $age, $email, $role, $hashed_password);
 
     if ($stmt->execute()) {
         $new_user_id = $stmt->insert_id; // Get the newly created user ID
 
-        // ✅ Step 4: Assign projects if any were selected (Admins should not have assigned projects)
+        // Step 4: Assign projects if any were selected (Admins should not have assigned projects)
         if (!empty($assigned_projects) && $role !== "Admin") {
             $assign_stmt = $conn->prepare("INSERT INTO project_team (project_id, user_id) VALUES (?, ?)");
             foreach ($assigned_projects as $project_id) {
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="create-container">
             <h1 class="dashboard-title">Create New User</h1> <!-- Title inside container -->
 
-            <!-- ✅ Success & Error Messages -->
+            <!-- Success & Error Messages -->
             <?php
             if (isset($_SESSION['success_message'])) {
                 echo "<div class='message success'>{$_SESSION['success_message']}</div>";
