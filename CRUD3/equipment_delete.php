@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['csrf_token'])) {
         die('Invalid CSRF token. Delete not allowed.');
     }
 
-    // ✅ Regenerate CSRF token after validation
+    // Regenerate CSRF token after validation
     unset($_SESSION['csrf_token']);  // Remove old token
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
