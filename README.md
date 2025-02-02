@@ -66,14 +66,36 @@
 ---
 
 ## Security Features
-- **SQL Injection Prevention**: Uses prepared statements.
-- **Cross-Site Scripting (XSS) Protection**: Input validation and escaping.
-- **CSRF Protection**: CSRF tokens prevent unauthorized form submissions.
+- ## Security Features
+
+- **Authentication**: Secure login system using PHP sessions.  
+  - Passwords are **hashed** and stored securely in the database.  
+  - Sessions regenerate every **60 seconds** to prevent session hijacking.  
+
+- **Authorization**:  
+  - Users can access only data and functions relevant to their assigned roles.  
+  - Admins, Researchers, and Research Assistants have restricted access to prevent unauthorized actions.  
+
+- **Input Validation**:  
+  - Server-side validation is implemented to prevent **SQL Injection, Cross-Site Scripting (XSS), and other injection attacks**.  
+  - Prepared statements and input sanitization ensure secure data handling.  
+
+- **CSRF Protection**:  
+  - All forms are secured with **CSRF tokens** to prevent cross-site request forgery attacks.  
+  - Token validation is enforced on all POST requests.  
+
+- **Encryption**:  
+  - Sensitive data, such as researcher personal details and project information, is **encrypted**.  
+  - Passwords are stored using **bcrypt hashing** for strong security.  
+
+- **Error Handling**:  
+  - Secure error handling is implemented to prevent system exposure through error messages.  
+  - Errors are logged securely without exposing sensitive details to users.  
+
 - **Session Security**:  
-  - Sessions regenerate every **60 seconds** to prevent hijacking.  
-  - Users who remain inactive for **30 minutes** will be automatically logged out.  
-  - Logging out manually will immediately end the session.  
-- **Password Security**: Passwords are stored securely using **bcrypt hashing**.
+  - Users who remain inactive for **30 minutes** are automatically **logged out** due to session timeout.  
+  - Sessions are **bound to the user’s IP and browser** to prevent hijacking.  
+  - **Strict session cookie policies** (`SameSite=Strict`, `HttpOnly`, `Secure`) are enforced.  
 
 ---
 
