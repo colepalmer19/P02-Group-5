@@ -3,11 +3,13 @@
 ## Installation Steps
 
 1. Download all the files.
-2. Ensure to download vendor as well as it is needed for the password reset
-3. Place them inside a folder called **group**.
-4. Move the **group** folder to your web root directory.
+2. Open phpMyAdmin and create a database named amc_system.
+3. Go to the Import tab, select amc_system.sql that is provided in the main branch, and click Go to import the database.
+4. Ensure to download vendor as well as it is needed for the password reset
+5. Place them inside a folder called **group**.
+6. Move the **group** folder to your web root directory.
    - **For XAMPP**: Place it inside `htdocs/group/`.
-5. Open a browser and go to [http://localhost/group/login.php](http://localhost/group/login.php) to log in as **Admin, Researcher, or Research Assistant**.
+7. Open a browser and go to [http://localhost/group/login.php](http://localhost/group/login.php) to log in as **Admin, Researcher, or Research Assistant**.
 
 ---
 
