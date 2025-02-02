@@ -55,8 +55,8 @@ $sessionRole = htmlspecialchars($_SESSION['session_role'], ENT_QUOTES, 'UTF-8');
 
         <div class="dashboard-grid">
             <a href="CRUD2/view_projects.php" class="dashboard-card">
-                <img src="images/records.png" alt="Project Records">
-                <span>Project Records</span>
+                <img src="images/records.png" alt="View Projects">
+                <span>View Projects</span>
             </a>
             <a href="CRUD3/equipment.php" class="dashboard-card">
                 <img src="images/equipment.png" alt="Equipment Management">
